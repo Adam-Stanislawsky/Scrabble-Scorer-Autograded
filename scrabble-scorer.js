@@ -32,15 +32,40 @@ function oldScrabbleScorer(word) {
 // your job is to finish writing these functions and variables that we've named //
 // don't change the names or your program won't work as expected. //
 
+let initialWord;
+
 function initialPrompt() {
-   console.log("Let's play some scrabble! Enter a word:");
+   // console.log("Let's play some scrabble! Enter a word:");
+   initialWord = input.question("Let's play some scrabble! Enter a word: ");
+   return initialWord;
 };
 
 let newPointStructure;
 
 let simpleScorer;
 
+simpleScorer = function(word){
+	word = word.toUpperCase();
+	let letterPoints = 0;
+ 
+	for (let i = 0; i < word.length; i++) {
+      letterPoints++
+	}
+	return `Points for '${word}': ${letterPoints}`;
+ }
+
 let vowelBonusScorer;
+
+vowelBonusScorer = function(word){
+	word = word.toUpperCase();
+   let vowels = ['A', 'E', 'I', 'O', 'U'];
+	let letterPoints = 0;
+ 
+	for (let i = 0; i < word.length; i++) {
+      if(){};
+      else {} //going to use .split method on 'word' to form an array and compare each index to vowels array, maybe 'contains' method??
+	return `Points for '${word}': ${letterPoints}`;
+ }
 
 let scrabbleScorer;
 
@@ -52,7 +77,8 @@ function transform() {};
 
 function runProgram() {
    initialPrompt();
-   
+   // console.log(oldScrabbleScorer(initialWord));
+   console.log(simpleScorer(initialWord));
 }
 
 // Don't write any code below this line //
