@@ -86,7 +86,30 @@ const scoringAlgorithms = [
 ];
 
 
-function scorerPrompt() {}
+function scorerPrompt() {
+   let scoreChoice = input.question()
+}
+
+// function scorerPrompt() {
+//     // Prompt the user to select a scoring algorithm
+//     let userChoice = prompt("Select a scoring algorithm:\n0 - Simple Scorer\n1 - Vowel Bonus Scorer\n2 - Scrabble Scorer");
+    
+//     // Convert the user input to a number
+//     userChoice = parseInt(userChoice, 10);
+    
+//     // Return the corresponding scoring function based on user input
+//     if (userChoice === 0) {
+//         return simpleScorer;
+//     } else if (userChoice === 1) {
+//         return vowelBonusScorer;
+//     } else if (userChoice === 2) {
+//         return scrabbleScorer;
+//     } else {
+//         // If the input is invalid, default to simple scorer
+//         console.log("Invalid choice. Defaulting to Simple Scorer.");
+//         return simpleScorer;
+//     }
+// }
 
 function transform() {};
 
