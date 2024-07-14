@@ -87,8 +87,21 @@ const scoringAlgorithms = [
 
 
 function scorerPrompt() {
-   let scoreChoice = input.question()
+   let scoreChoice = input.question(
+   `Which scoring algorithm would you like to use?
+
+   0 - Simple: One point per character
+   1 - Vowel Bonus: Vowels are worth 3 points
+   2 - Scrabble: Uses scrabble point system
+   Enter 0, 1, or 2: `
+   );
+
+    return console.log(`Points for '${initialWord}': ${scoringAlgorithms[scoreChoice].scorerFunction(initialWord)}`);
+   
+
+   //Score for 'coconut': 7
 }
+
 
 // function scorerPrompt() {
 //     // Prompt the user to select a scoring algorithm
@@ -117,9 +130,11 @@ function transform() {};
 //--------------------------program running portion
 function runProgram() {
    initialPrompt();
+   scorerPrompt();
+
    // console.log(oldScrabbleScorer(initialWord));
-   console.log(vowelBonusScorer(initialWord));
-   console.log(simpleScorer(initialWord));
+   // console.log(vowelBonusScorer(initialWord));
+   // console.log(simpleScorer(initialWord));
 }
 //--------------------------program running portion
 
