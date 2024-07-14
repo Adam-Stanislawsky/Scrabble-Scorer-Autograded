@@ -42,30 +42,40 @@ function initialPrompt() {
 
 let newPointStructure;
 
+
+// simple score-------------------------------------
 let simpleScorer;
 
 simpleScorer = function(word){
-	word = word.toUpperCase();
-	let letterPoints = 0;
+	word = word.toLowerCase();
+	let score = 0;
  
 	for (let i = 0; i < word.length; i++) {
-      letterPoints++
+      score++
 	}
-	return `Points for '${word}': ${letterPoints}`;
+	return score;
  }
+//---------------------------------------------------
 
+ //vowel bonus score----------------------------------
 let vowelBonusScorer;
 
 vowelBonusScorer = function(word){
-	word = word.toUpperCase();
-   let vowels = ['A', 'E', 'I', 'O', 'U'];
-	let letterPoints = 0;
- 
-	for (let i = 0; i < word.length; i++) {
-      if(){};
-      else {} //going to use .split method on 'word' to form an array and compare each index to vowels array, maybe 'contains' method??
-	return `Points for '${word}': ${letterPoints}`;
- }
+   let vowels = "aeiou";
+   let score = 0;
+   word = word.toLowerCase();
+   
+   for (let i = 0; i < word.length; i++) {
+       let char = word[i];
+       
+       if (vowels.includes(char)) {
+           score += 3;
+       } else {
+           score += 1;
+       }
+   }    return score;
+}
+//----------------------------------------------------
 
 let scrabbleScorer;
 
@@ -75,11 +85,15 @@ function scorerPrompt() {}
 
 function transform() {};
 
+
+//--------------------------program running portion
 function runProgram() {
    initialPrompt();
    // console.log(oldScrabbleScorer(initialWord));
+   console.log(vowelBonusScorer(initialWord));
    console.log(simpleScorer(initialWord));
 }
+//--------------------------program running portion
 
 // Don't write any code below this line //
 // And don't change these or your program will not run as expected //
