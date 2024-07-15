@@ -40,7 +40,8 @@ function initialPrompt() {
    return initialWord;
 };
 
-let newPointStructure;
+//let newPointStructure = {};
+let newPointStructure = transform(oldPointStructure);
 
 
 // simple score-------------------------------------
@@ -77,12 +78,26 @@ vowelBonusScorer = function(word){
 }
 //----------------------------------------------------
 
+ //scrabble score----------------------------------
 let scrabbleScorer;
 
+scrabbleScorer = function(word) {
+	word = word.toLowerCase();
+	let letterPoints = 0;
+ 
+	for (let i = 0; i < word.length; i++) {
+      let letter = word[i];
+      letterPoints += newPointStructure[letter];
+	}
+	return letterPoints;
+ }
+
+
+//----------------------------------------------------
 const scoringAlgorithms = [
    { name: "Simple Score", description: "Each letter is worth 1 point.", scorerFunction: simpleScorer, },
    { name: "Bonus Vowels", description: "Vowels are 3 pts, consonants are 1 pt.", scorerFunction: vowelBonusScorer, },
-   { name: "Scrabble", description: "The traditional scoring algorithm.", scorerFunction: oldScrabbleScorer, }
+   { name: "Scrabble", description: "The traditional scoring algorithm.", scorerFunction: scrabbleScorer, }
 ];
 
 
@@ -96,42 +111,39 @@ function scorerPrompt() {
    Enter 0, 1, or 2: `
    );
 
-    return console.log(`Points for '${initialWord}': ${scoringAlgorithms[scoreChoice].scorerFunction(initialWord)}`);
-   
+   //return algorithmSelection;
+   return console.log(`Points for '${initialWord}': ${scoringAlgorithms[scoreChoice].scorerFunction(initialWord)}`);
+   //need to edit this to: 'should return the object the user has selected.'
 
-   //Score for 'coconut': 7
+   
 }
 
 
-// function scorerPrompt() {
-//     // Prompt the user to select a scoring algorithm
-//     let userChoice = prompt("Select a scoring algorithm:\n0 - Simple Scorer\n1 - Vowel Bonus Scorer\n2 - Scrabble Scorer");
-    
-//     // Convert the user input to a number
-//     userChoice = parseInt(userChoice, 10);
-    
-//     // Return the corresponding scoring function based on user input
-//     if (userChoice === 0) {
-//         return simpleScorer;
-//     } else if (userChoice === 1) {
-//         return vowelBonusScorer;
-//     } else if (userChoice === 2) {
-//         return scrabbleScorer;
-//     } else {
-//         // If the input is invalid, default to simple scorer
-//         console.log("Invalid choice. Defaulting to Simple Scorer.");
-//         return simpleScorer;
-//     }
-// }
+function transform(oldStructure) {
 
-function transform() {};
+   let newScrabblePointStructure = {};
+
+   for (let pointValue in oldStructure) {
+      let letters = oldStructure[pointValue];
+      for (let i = 0; i < letters.length; i++) {
+          let letter = letters[i];
+          newScrabblePointStructure[letter.toLowerCase()] = Number(pointValue); 
+      }
+  }
+  
+  return newScrabblePointStructure;
+
+};
+
 
 
 //--------------------------program running portion
 function runProgram() {
    initialPrompt();
    scorerPrompt();
-
+   
+   //console.log(newPointStructure);
+   //console.log(`Points for '${initialWord}': ${scoringAlgorithms[algorithmSelection].scorerFunction(initialWord)}`);
    // console.log(oldScrabbleScorer(initialWord));
    // console.log(vowelBonusScorer(initialWord));
    // console.log(simpleScorer(initialWord));
