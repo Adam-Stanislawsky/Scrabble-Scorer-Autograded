@@ -35,16 +35,15 @@ function oldScrabbleScorer(word) {
 let initialWord;
 
 function initialPrompt() {
-   // console.log("Let's play some scrabble! Enter a word:");
    initialWord = input.question("Let's play some scrabble! Enter a word: ");
    return initialWord;
 };
 
-//let newPointStructure = {};
+
 let newPointStructure = transform(oldPointStructure);
 
 
-// simple score-------------------------------------
+
 let simpleScorer;
 
 simpleScorer = function(word){
@@ -52,13 +51,11 @@ simpleScorer = function(word){
 	let score = 0;
  
 	for (let i = 0; i < word.length; i++) {
-      score++
+      score++;
 	}
 	return score;
  }
-//---------------------------------------------------
 
- //vowel bonus score----------------------------------
 let vowelBonusScorer;
 
 vowelBonusScorer = function(word){
@@ -76,9 +73,7 @@ vowelBonusScorer = function(word){
        }
    }    return score;
 }
-//----------------------------------------------------
 
- //scrabble score----------------------------------
 let scrabbleScorer;
 
 scrabbleScorer = function(word) {
@@ -92,8 +87,6 @@ scrabbleScorer = function(word) {
 	return letterPoints;
  }
 
-
-//----------------------------------------------------
 const scoringAlgorithms = [
    { name: "Simple Score", description: "Each letter is worth 1 point.", scorerFunction: simpleScorer, },
    { name: "Bonus Vowels", description: "Vowels are 3 pts, consonants are 1 pt.", scorerFunction: vowelBonusScorer, },
@@ -111,11 +104,8 @@ function scorerPrompt() {
    Enter 0, 1, or 2: `
    );
 
-   //return algorithmSelection;
    return console.log(`Points for '${initialWord}': ${scoringAlgorithms[scoreChoice].scorerFunction(initialWord)}`);
-   //need to edit this to: 'should return the object the user has selected.'
 
-   
 }
 
 
@@ -136,19 +126,12 @@ function transform(oldStructure) {
 };
 
 
-
-//--------------------------program running portion
 function runProgram() {
    initialPrompt();
    scorerPrompt();
    
-   //console.log(newPointStructure);
-   //console.log(`Points for '${initialWord}': ${scoringAlgorithms[algorithmSelection].scorerFunction(initialWord)}`);
-   // console.log(oldScrabbleScorer(initialWord));
-   // console.log(vowelBonusScorer(initialWord));
-   // console.log(simpleScorer(initialWord));
 }
-//--------------------------program running portion
+
 
 // Don't write any code below this line //
 // And don't change these or your program will not run as expected //
